@@ -1,0 +1,51 @@
+body {
+    color: white;
+    background-color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.containercpy {
+    background-color: white;
+    width: 100%;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+body::before {
+    content: "";
+    background: url('https://source.unsplash.com/random/?contact,email') no-repeat center/cover;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+section {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-top: 10em;
+}
+
+#catsec {
+    border-radius: 50px;
+    padding-top: 10px;
+    margin-top: 100px;
+    padding-bottom: 8px;
+    background: #93868f85;
+}
+
+#catproducts {
+    margin-top: 2em;
+}
+
+#allproductshead {
+    margin-bottom: 1em;
+    margin-top: 2em;
+    border: 5px solid rgb(144, 17, 198);
+}
