@@ -3,6 +3,57 @@ session_start();
 include('config/dbcon.php');
 include('authentication.php');
 
+
+// order Section
+// Add Order
+if(isset($_POST['order_save']))
+{
+    $order_id = $_POST['order_id'];
+    $email = $_POST['email'];
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $address = $_POST['user_address'];
+    $city = $_POST['user_city'];
+    $pincode = $_POST['user_pincode'];
+    $total = $_POST['total'];
+    $products = $_POST['products'];
+
+    $cq = " INSERT INTO `orders` (order_id,email,name,phone,address,city,pincode,total,products) VALUES('$order_id','$email','$name','$phone','$address','$city','$pincode','$order_id','$products')";
+    $cq_run =mysqli_query($conn,$cq);
+
+    if($cq_run)
+    {
+        $_SESSION['status'] = "<Script>alert('Order Placed Successfully');</Script>";
+        header('Location: index.php');
+    }
+    else
+    {   
+        $_SESSION['status'] = "<Script>alert('Fail To Place Your Order');</Script>";
+        header('Location: index.php');
+    }
+}
+
+// delete Order
+if(isset($_POST['order_delete']))
+{
+    $order_id = $_POST['order_delete_id'];
+    $order_query = "DELETE FROM `orders` WHERE `id`='$order_id'";
+
+    $order_query_run = mysqli_query($conn, $order_query);
+
+    if($order_query_run)
+    {
+        $_SESSION['status'] = "Order Deleted Sucessfully.";
+        header('Location: orders.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Order Deleting FAILED.!";
+        header('Location: orders.php');
+    }
+}
+
+
 // Add Category
 if(isset($_POST['category_save']))
 {

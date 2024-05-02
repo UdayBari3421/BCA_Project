@@ -28,12 +28,18 @@ session_start();
                                             $index = rand(1,1000);
                                             $total = 0;
                                             $product_name = array();
+                                            $product_quantity = array();
+                                            $product_price = array();
+
                                             if (isset($_SESSION['cart'])) 
                                             {
                                                 foreach ($_SESSION['cart'] as $key => $value) {
                                                     $ptotal = $value['product_price'] * $value['product_quantity'];
                                                     $total += $value['product_price'] * $value['product_quantity'];
-                                                    $product_name[] = $value['product_name']." ( Qty :".$value['product_quantity'].") "." ( Price :".$value['product_price']." )";
+                                                    $product_name[] = $value['product_name'];
+                                                    $product_quantity[] = $value['product_quantity'];
+                                                    $product_price[] = $value['product_price'];
+                                                    
                                                     ?>
                                                     <tr>
                                                         <td style="color:white; font-weight:bolder;">#OD<?= $index ?></td>
@@ -42,15 +48,17 @@ session_start();
                                                         <td style="color:white; font-weight:bolder;"><?= $value['product_quantity'];  ?></td>
                                                         <div style="display:block;">
                                                             <?php 
-                                                                $products = implode(",",$product_name);
+                                                                $productname = implode(",",$product_name);
+                                                                $quantity = implode(",",$product_quantity);
+                                                                $price = implode(",",$product_price);
                                                             ?>
                                                         </div>
                                                     </tr> <?php
                                                 }
-                                                $prod = array(explode(",",$products));
-                                                foreach($prod as $p)
+                                                $products = array($productname,$quantity,$price);
+                                                foreach($products as $p)
                                                 {
-                                                    $products = implode("</br>",$p);
+                                                    $products = implode(",",$p);
                                                     echo "<input type='hidden' name='products' value='$products'>";
                                                 }
                                             }
